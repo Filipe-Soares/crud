@@ -1,8 +1,11 @@
 package com.ms.crud.exception;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
+import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -12,5 +15,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExceptionResponse implements Serializable {
+	private static final long serialVersionUID = 4311326615419627685L;
+	
+	private Date timestamp;
+	private String message;
+	private String details;
 
 }

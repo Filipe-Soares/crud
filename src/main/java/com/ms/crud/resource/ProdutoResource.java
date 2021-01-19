@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ms.crud.dto.ProdutoDto;
 import com.ms.crud.services.ProdutoService;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
 
 @RestController
 @RequestMapping("/produto")
@@ -65,7 +65,7 @@ public class ProdutoResource {
 	
 	@PostMapping(produces = {"application/json", "application/xml", "application/x-yaml"},
 				 consumes = {"application/json", "application/xml", "application/x-yaml"})
-	public ProdutoDto create(@RequestBory ProdutoDto produtoDto) {
+	public ProdutoDto create(@RequestBody ProdutoDto produtoDto) {
 		ProdutoDto proDto = produtoService.create(produtoDto);
 		proDto.add(org.springframework.hateoas.server.mvc.WebMvcLinkBuilder
 					.linkTo(org.springframework.hateoas.server.mvc.WebMvcLinkBuilder
@@ -74,8 +74,8 @@ public class ProdutoResource {
 	}
 	
 	@PutMapping(produces = {"application/json", "application/xml", "application/x-yaml"},
-			 consumes = {"application/json", "application/xml", "application/x-yaml"})
-	public ProdutoDto update(@RequestBory ProdutoDto produtoDto) {
+			    consumes = {"application/json", "application/xml", "application/x-yaml"})
+	public ProdutoDto update(@RequestBody ProdutoDto produtoDto) {
 		ProdutoDto proDto = produtoService.update(produtoDto);
 		proDto.add(org.springframework.hateoas.server.mvc.WebMvcLinkBuilder
 					.linkTo(org.springframework.hateoas.server.mvc.WebMvcLinkBuilder
@@ -85,8 +85,8 @@ public class ProdutoResource {
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id){
-		produtoSevice.delete(id);
-		return RespnseEntity.ok().build();
+		produtoService.delete(id);
+		return ResponseEntity.ok().build();
 	}
 		
 	
