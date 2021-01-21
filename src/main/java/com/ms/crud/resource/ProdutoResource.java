@@ -38,11 +38,11 @@ public class ProdutoResource {
 	}
 	
 	
-	@GetMapping(value="/id", produces= {"application/json","application/xml","application/x-yaml"})
+	@GetMapping(value="/{id}", produces= {"application/json","application/xml","application/x-yaml"})
 	public ProdutoDto findById(@PathVariable("id") Long id) {
 		ProdutoDto produtoDto = produtoService.findById(id);
 		produtoDto.add(org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo(org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn(ProdutoResource.class).findById(id)).withSelfRel());
-		return null;
+		return produtoDto;
 	}
 	
 	@GetMapping(produces= {"application/json","application/xml","application/x-yaml"})
@@ -69,7 +69,7 @@ public class ProdutoResource {
 		ProdutoDto proDto = produtoService.create(produtoDto);
 		proDto.add(org.springframework.hateoas.server.mvc.WebMvcLinkBuilder
 					.linkTo(org.springframework.hateoas.server.mvc.WebMvcLinkBuilder
-					.methodOn(ProdutoResource.class).findById(produtoDto.getId())).withSelfRel());
+					.methodOn(ProdutoResource.class).findById(proDto.getId())).withSelfRel());
 		return proDto;
 	}
 	
