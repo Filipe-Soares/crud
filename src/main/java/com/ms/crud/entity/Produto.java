@@ -32,6 +32,8 @@ public class Produto implements Serializable {
 	
 	private static final long serialVersionUID = -5701115834784420311L;
 	
+	//crud de outra branch
+	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
